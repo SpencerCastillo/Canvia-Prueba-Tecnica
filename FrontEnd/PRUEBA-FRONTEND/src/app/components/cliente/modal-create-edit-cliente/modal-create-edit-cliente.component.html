@@ -1,0 +1,114 @@
+<div mat-dialog-title >{{TituloModal}} <button   mat-button style="float: right;margin:0;padding: 0;min-width: 18px;" (click)="onNoClick()"><mat-icon >clear</mat-icon></button>  </div>
+<div mat-dialog-content>
+    <form [formGroup] = "ownerForm">
+
+        <div class="row">
+            <div class="col-lg-3">
+                <mat-form-field style="width: 100%;">
+                    <mat-select  (selectionChange)="onChangeTipoPersona()" [disabled]="disabledTipoPersona"
+                    formControlName="chTipoPersona" placeholder="Tipo de Persona">
+                      <mat-option value="N">Natural</mat-option>
+                      <mat-option value="J">Jurídica</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="hasError('chTipoPersona', 'required')"> Campo obligatorio</mat-error>
+                </mat-form-field>
+            </div>
+           <div class="col-lg-9">
+                <mat-form-field style="width:100%">
+                    <mat-label >Numero de Documento</mat-label>
+                    <input formControlName="vcNumeroDocumento" matInput  value="" >
+                    <mat-error *ngIf="hasError('vcNumeroDocumento', 'required')"> Campo obligatorio</mat-error>
+                </mat-form-field>
+           </div>
+        </div>
+        <div>
+            <h4 *ngIf="TipoPersona == 'N'">Persona Natural</h4>
+            <h4 *ngIf="TipoPersona == 'J'">Persona Jurídica</h4>
+            <hr>
+        </div>
+        <div *ngIf="TipoPersona == 'J'">
+            <div class="row">
+                <div class="col-lg-12">
+                     <mat-form-field style="width:100%">
+                         <mat-label >Razón Social</mat-label>
+                         <input formControlName="vcRazonSocial" matInput  value="" >
+                         <mat-error *ngIf="hasError('vcRazonSocial', 'required')"> Campo obligatorio</mat-error>
+                     </mat-form-field>
+                </div>
+            </div>
+        </div>
+       
+        <div *ngIf="TipoPersona == 'N'">
+            <div class="row">
+                <div class="col-lg-4">
+                     <mat-form-field style="width:100%">
+                         <mat-label >Apellido Paterno</mat-label>
+                         <input formControlName="nvApellidoPaterno" matInput  value="" >
+                         <mat-error *ngIf="hasError('nvApellidoPaterno', 'required')"> Campo obligatorio</mat-error>
+                     </mat-form-field>
+                </div>
+                <div class="col-lg-4">
+                     <mat-form-field style="width:100%">
+                         <mat-label >Apellido Materno</mat-label>
+                         <input formControlName="nvApellidoMaterno" matInput  value="" >
+                         <mat-error *ngIf="hasError('nvApellidoMaterno', 'required')"> Campo obligatorio</mat-error>
+                     </mat-form-field>
+                </div>
+                <div class="col-lg-4">
+                    <mat-form-field style="width:100%">
+                        <mat-label >Nombres</mat-label>
+                        <input formControlName="nvNombres" matInput  value="" >
+                        <mat-error *ngIf="hasError('nvNombres', 'required')"> Campo obligatorio</mat-error>
+                    </mat-form-field>
+               </div>
+             </div>
+             <div class="row" >
+                <div class="col-lg-3">
+                   <mat-form-field style="width: 100%;">
+                       <mat-select  
+                       formControlName="chSexo" placeholder="Sexo">
+                         <mat-option value="M">Masculino</mat-option>
+                         <mat-option value="F">Femenino</mat-option>
+                       </mat-select>
+                       <mat-error *ngIf="hasError('chSexo', 'required')"> Campo obligatorio</mat-error>
+                   </mat-form-field>
+                </div>
+            </div>
+    
+        </div>
+
+        <div *ngIf="TipoPersona == 'N' || TipoPersona == 'J'">
+            <div class="row">
+                <div class="col-lg-12">
+                     <mat-form-field style="width:100%">
+                         <mat-label >Dirección</mat-label>
+                         <input formControlName="vcDireccion" matInput  value="" >
+                         <mat-error *ngIf="hasError('vcDireccion', 'required')"> Campo obligatorio</mat-error>
+                     </mat-form-field>
+                </div>
+             </div>
+             <div class="row">
+                <div class="col-lg-12">
+                     <mat-form-field style="width:100%">
+                         <mat-label >Email</mat-label>
+                         <input formControlName="vcEmail" matInput  value="" >
+                         <mat-error *ngIf="hasError('vcEmail', 'required')"> Campo obligatorio</mat-error>
+                         <mat-error *ngIf="hasError('vcEmail', 'email')"> No es un correo electrónico válido</mat-error>
+                     </mat-form-field>
+                </div>
+             </div>
+        </div>
+        
+        
+         
+        <div class="row">
+            <div class="col-lg-12">
+                <button color="primary"   (click)="onSave()" mat-raised-button >
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">save</mat-icon>
+                    Grabar  
+                </button>
+            </div>
+        </div>
+    </form> 
+    
+</div>
